@@ -50,10 +50,10 @@ public class ArduinoCommunicator : MonoBehaviour
         // Receive data
         //---------------------------------------------------------------------
 
-        string message = serialController.ReadSerialMessage();
+         string message = serialController.ReadSerialMessage();
 
-        if (message == null)
-            return;
+        //if (message == null)
+          //  return;
 
         // Check if the message is plain data or a connect/disconnect event.
         /*if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
