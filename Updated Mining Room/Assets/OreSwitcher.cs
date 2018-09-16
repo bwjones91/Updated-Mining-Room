@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class OreSwitcher : MonoBehaviour {
 
-    private ArduinoCommunicator AC;
-    private string test;
+    public List<Ore> oresNeeded = new List<Ore>();
 
     public GameObject mithrilController;
     public GameObject adamantiteController;
@@ -13,65 +12,99 @@ public class OreSwitcher : MonoBehaviour {
     public GameObject pyroniumController;
     public GameObject silverController;
 
+    public GameObject mithrilOre;
+    public GameObject adamantiteOre;
+    public GameObject goldOre;
+    public GameObject pyroniumOre;
+    public GameObject silverOre;
+
+    public GameObject activeOre;
+
+    int mithrilNeeded;
+    int adamantiteNeeded;
+    int goldNeeded;
+    int pyroniumNeeded;
+    int silverNeeded;
 
     void Start () {
-        AC = GameObject.Find("Piezo Arduino Communication").GetComponent<ArduinoCommunicator>();
+        OresNeeded();
+        Invoke("ActiveOre", 1f);
 	}
 	
 	void Update () {
-        print(AC.GetMessageIN());
-        test = AC.messageIN;
+        
+    }
 
-        switch (AC.messageIN)
+    public void OresNeeded()
+    {
+        mithrilNeeded = Random.Range(3, 5);
+        adamantiteNeeded = Random.Range(3, 4);
+        goldNeeded = Random.Range(3, 5);
+        pyroniumNeeded = Random.Range(3, 5);
+        silverNeeded = 20 - (mithrilNeeded + adamantiteNeeded + goldNeeded + pyroniumNeeded);
+        for (int i = 0; i < mithrilNeeded; i++)
         {
-            case "0":
+            oresNeeded.Add(mithrilOre.GetComponent<Ore>());
+        }
+        for (int i = 0; i < adamantiteNeeded; i++)
+        {
+            oresNeeded.Add(adamantiteOre.GetComponent<Ore>());
+        }
+        for (int i = 0; i < goldNeeded; i++)
+        {
+            oresNeeded.Add(goldOre.GetComponent<Ore>());
+        }
+        for (int i = 0; i < pyroniumNeeded; i++)
+        {
+            oresNeeded.Add(pyroniumOre.GetComponent<Ore>());
+        }
+        for (int i = 0; i < silverNeeded; i++)
+        {
+            oresNeeded.Add(silverOre.GetComponent<Ore>());
+        }
+    }
+
+    public void ActiveOre()
+    {
+        var oreActive = oresNeeded[Random.Range(0, oresNeeded.Count)];
+        switch (oreActive.oreType)
+        {
+            case Ore.OreType.Mithril:
+                activeOre = mithrilOre;
                 mithrilController.SetActive(true);
-                Invoke("DeactivateMithril", 2f);
                 break;
-            case "1":
+            case Ore.OreType.Adamantite:
+                activeOre = adamantiteOre;
                 adamantiteController.SetActive(true);
-                Invoke("DeactivateAdamantite", 2f);
                 break;
-            case "2":
+            case Ore.OreType.Gold:
+                activeOre = goldOre;
                 goldController.SetActive(true);
-                Invoke("DeactivateGold", 2f);
                 break;
-            case "3":
+            case Ore.OreType.Pyronium:
+                activeOre = pyroniumOre;
                 pyroniumController.SetActive(true);
-                Invoke("DeactivatePyronium", 2f);
                 break;
-            case "4":
+            case Ore.OreType.Silver:
+                activeOre = silverOre;
                 silverController.SetActive(true);
-                Invoke("DeactivateSilver", 2f);
                 break;
         }
 
+        Invoke("DeactivateOre", 2f);
     }
 
-    
-    public void DeactivateMithril()
+    public void DeactivateOre()
     {
+        activeOre = null;
         mithrilController.SetActive(false);
-    }
-
-    public void DeactivateAdamantite()
-    {
         adamantiteController.SetActive(false);
-    }
-
-    public void DeactivateGold()
-    {
         goldController.SetActive(false);
-    }
-
-    public void DeactivatePyronium()
-    {
         pyroniumController.SetActive(false);
-    }
-
-    public void DeactivateSilver()
-    {
         silverController.SetActive(false);
+
+        Invoke("ActiveOre", 1f);
     }
 
+   
 }
