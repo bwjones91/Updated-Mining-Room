@@ -1,26 +1,14 @@
-/**
- * SerialCommUnity (Serial Communication for Unity)
- * Author: Daniel Wilches <dwilches@gmail.com>
- *
- * This work is released under the Creative Commons Attributions license.
- * https://creativecommons.org/licenses/by/2.0/
- */
-
 using UnityEngine;
 using System.Collections;
 
-/**
- * Sample for reading using polling by yourself, and writing too.
- */
 public class ArduinoCommunicator : MonoBehaviour
 {
     public SerialController serialController;
     public string messageIN;
 
-    // Initialization
     void Start()
     {
-        serialController = GameObject.Find("Serial Controller").GetComponent<SerialController>();
+        serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
 
     }
 
@@ -53,7 +41,7 @@ public class ArduinoCommunicator : MonoBehaviour
          string message = serialController.ReadSerialMessage();
 
         //if (message == null)
-          //  return;
+            //return;
 
         // Check if the message is plain data or a connect/disconnect event.
         /*if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
@@ -63,6 +51,8 @@ public class ArduinoCommunicator : MonoBehaviour
         else
             Debug.Log("Message arrived: " + message);*/
         messageIN = message;
+        message = "5";
+
     }
 
     public float GetMessageIN()

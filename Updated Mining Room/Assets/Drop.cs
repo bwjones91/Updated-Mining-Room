@@ -5,35 +5,42 @@ using UnityEngine;
 public class Drop : MonoBehaviour {
 
     public OreSwitcher oreSwitcher;
-    public HitChecker hitChecker;
     public float hitAmount;
-
-    private bool oreDrop = false;
+    public GameObject thisOre;
 
     [SerializeField] float hitThreshold = 3;
+    [SerializeField] Ore.OreType thisType;
 
+    void OnEnable()
+    {
+        hitAmount = 0;
+    }
 
-	void Start () {
+    void OnDisable()
+    {
+        hitAmount = 0;
+    }
+
+    void Start () {
         oreSwitcher = GameObject.Find("Ore Controller").GetComponent<OreSwitcher>();
-        hitChecker = GameObject.Find("Ore Controller").GetComponent<HitChecker>();
+        MessageListener.OnHit += OreHit;
     }
 	
 	void Update () {
-		if(oreSwitcher.activeOre == hitChecker.oreHit)
-        {
-            hitAmount++;
-        }
-
-        if(hitAmount >= hitThreshold)
-        {
-            oreDrop = true;
-        }
-
-        if (oreDrop)
-        {
-            oreDrop = false;
-            Instantiate(oreSwitcher.activeOre);
-        }
 
 	}
+
+    void OreHit(Ore.OreType type)
+    {
+        if(type == thisType && thisType == oreSwitcher.oreActive)
+        {
+            hitAmount++;
+            if(hitAmount >= hitThreshold)
+            {
+                Instantiate(thisOre);
+                hitAmount = 0;
+            }
+        }
+    }
+
 }

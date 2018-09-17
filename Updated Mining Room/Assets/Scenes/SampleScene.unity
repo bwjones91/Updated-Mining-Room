@@ -155,9 +155,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oreSwitcher: {fileID: 0}
-  hitChecker: {fileID: 0}
   hitAmount: 0
+  thisOre: {fileID: 1785830967281564, guid: 69fa3a90ac660a64db9d0c5a2a2b49c4, type: 2}
   hitThreshold: 3
+  thisType: 2
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,9 +272,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oreSwitcher: {fileID: 0}
-  hitChecker: {fileID: 0}
   hitAmount: 0
+  thisOre: {fileID: 1702401973756734, guid: fad9f871fabfdb24facbea0fae3c3b36, type: 2}
   hitThreshold: 3
+  thisType: 0
 --- !u!1 &282840810
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,9 +578,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oreSwitcher: {fileID: 0}
-  hitChecker: {fileID: 0}
   hitAmount: 0
+  thisOre: {fileID: 1884925981062640, guid: ecf26329096c7b8418f17d8e38c9a2fa, type: 2}
   hitThreshold: 3
+  thisType: 3
 --- !u!1001 &1440080352
 Prefab:
   m_ObjectHideFlags: 0
@@ -667,9 +670,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oreSwitcher: {fileID: 0}
-  hitChecker: {fileID: 0}
   hitAmount: 0
+  thisOre: {fileID: 1711967765612290, guid: 6ddc56e9d57a64e43aedf0b2bfc79339, type: 2}
   hitThreshold: 3
+  thisType: 4
 --- !u!1 &1648110765
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,9 +716,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   oreSwitcher: {fileID: 0}
-  hitChecker: {fileID: 0}
   hitAmount: 0
+  thisOre: {fileID: 1359452625201024, guid: f405932033840e84a95329b75b7147f6, type: 2}
   hitThreshold: 3
+  thisType: 1
 --- !u!4 &1729257824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4667062850229176, guid: f8127bd4a4386f742b8103d23caeb8ae,
@@ -757,11 +762,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1785613607}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05636463c585fcc418b876b0518ebba4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1a03027548d784348a5d2b1fbe819cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serialController: {fileID: 1872457340}
-  messageIN: 
 --- !u!1 &1872457338
 GameObject:
   m_ObjectHideFlags: 0
@@ -804,7 +807,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   portName: COM4
   baudRate: 9600
-  messageListener: {fileID: 0}
+  messageListener: {fileID: 1785613607}
   reconnectionDelay: 1000
   maxUnreadMessages: 1
 --- !u!1 &1902282439
@@ -816,7 +819,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1902282440}
   - component: {fileID: 1902282441}
-  - component: {fileID: 1902282442}
   m_Layer: 0
   m_Name: Ore Controller
   m_TagString: Untagged
@@ -867,15 +869,5 @@ MonoBehaviour:
     type: 2}
   silverOre: {fileID: 1711967765612290, guid: 6ddc56e9d57a64e43aedf0b2bfc79339, type: 2}
   activeOre: {fileID: 0}
---- !u!114 &1902282442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902282439}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e97452a3c14abf94db2f45e6b96a5e30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  oreHit: {fileID: 0}
+  oreCheck: 
+  oreActive: 0

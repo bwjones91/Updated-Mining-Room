@@ -10,7 +10,8 @@ public class Ore : MonoBehaviour {
         Adamantite,
         Gold,
         Pyronium,
-        Silver
+        Silver,
+        None
     }
 
     public OreType oreType;

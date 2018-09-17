@@ -19,6 +19,8 @@ public class OreSwitcher : MonoBehaviour {
     public GameObject silverOre;
 
     public GameObject activeOre;
+    public string oreCheck;
+    public Ore.OreType oreActive;
 
     int mithrilNeeded;
     int adamantiteNeeded;
@@ -29,7 +31,7 @@ public class OreSwitcher : MonoBehaviour {
     void Start () {
         OresNeeded();
         Invoke("ActiveOre", 1f);
-	}
+    }
 	
 	void Update () {
         
@@ -66,36 +68,44 @@ public class OreSwitcher : MonoBehaviour {
 
     public void ActiveOre()
     {
-        var oreActive = oresNeeded[Random.Range(0, oresNeeded.Count)];
-        switch (oreActive.oreType)
+        oreActive = oresNeeded[Random.Range(0, oresNeeded.Count)].oreType;
+        switch (oreActive)
         {
             case Ore.OreType.Mithril:
+                oreCheck = "0";
                 activeOre = mithrilOre;
                 mithrilController.SetActive(true);
                 break;
             case Ore.OreType.Adamantite:
+                oreCheck = "1";
                 activeOre = adamantiteOre;
                 adamantiteController.SetActive(true);
                 break;
             case Ore.OreType.Gold:
+                oreCheck = "2";
                 activeOre = goldOre;
                 goldController.SetActive(true);
                 break;
             case Ore.OreType.Pyronium:
+                oreCheck = "3";
                 activeOre = pyroniumOre;
                 pyroniumController.SetActive(true);
                 break;
             case Ore.OreType.Silver:
+                oreCheck = "4";
                 activeOre = silverOre;
                 silverController.SetActive(true);
                 break;
         }
 
         Invoke("DeactivateOre", 2f);
+        
     }
 
     public void DeactivateOre()
     {
+        oreActive = Ore.OreType.None;
+        oreCheck = "5";
         activeOre = null;
         mithrilController.SetActive(false);
         adamantiteController.SetActive(false);
