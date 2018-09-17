@@ -39,11 +39,11 @@ public class OreSwitcher : MonoBehaviour {
 
     public void OresNeeded()
     {
-        mithrilNeeded = Random.Range(3, 5);
-        adamantiteNeeded = Random.Range(3, 4);
-        goldNeeded = Random.Range(3, 5);
-        pyroniumNeeded = Random.Range(3, 5);
-        silverNeeded = 20 - (mithrilNeeded + adamantiteNeeded + goldNeeded + pyroniumNeeded);
+        mithrilNeeded = Random.Range(33, 35);
+        //adamantiteNeeded = Random.Range(33, 34);
+        //goldNeeded = Random.Range(3, 5);
+        //pyroniumNeeded = Random.Range(3, 5);
+        //silverNeeded = 20 - (mithrilNeeded + adamantiteNeeded + goldNeeded + pyroniumNeeded);
         for (int i = 0; i < mithrilNeeded; i++)
         {
             oresNeeded.Add(mithrilOre.GetComponent<Ore>());

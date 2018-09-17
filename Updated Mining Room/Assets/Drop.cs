@@ -11,6 +11,8 @@ public class Drop : MonoBehaviour {
     [SerializeField] float hitThreshold = 3;
     [SerializeField] Ore.OreType thisType;
 
+    public SerialController serialController;
+
     void OnEnable()
     {
         hitAmount = 0;
@@ -24,6 +26,7 @@ public class Drop : MonoBehaviour {
     void Start () {
         oreSwitcher = GameObject.Find("Ore Controller").GetComponent<OreSwitcher>();
         MessageListener.OnHit += OreHit;
+        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
     }
 	
 	void Update () {
@@ -40,6 +43,30 @@ public class Drop : MonoBehaviour {
                 Instantiate(thisOre);
                 hitAmount = 0;
             }
+            string stringMessage = hitAmount.ToString();
+            //stringMessage += hitAmount;
+            serialController.SendSerialMessage(stringMessage);
+        }
+    }
+
+    
+
+    public string EnumtoChar(Ore.OreType type)
+    {
+        switch (type)
+        {
+            case Ore.OreType.Mithril:
+                return "0";                
+            case Ore.OreType.Adamantite:
+                return "1";                
+            case Ore.OreType.Gold:
+                return "2";
+            case Ore.OreType.Pyronium:
+                return "3";
+            case Ore.OreType.Silver:
+                return "4";
+            default:
+                return "5";
         }
     }
 

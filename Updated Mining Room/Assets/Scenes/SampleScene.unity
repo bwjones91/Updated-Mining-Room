@@ -159,6 +159,7 @@ MonoBehaviour:
   thisOre: {fileID: 1785830967281564, guid: 69fa3a90ac660a64db9d0c5a2a2b49c4, type: 2}
   hitThreshold: 3
   thisType: 2
+  serialController: {fileID: 0}
 --- !u!1 &170076733
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,6 +277,7 @@ MonoBehaviour:
   thisOre: {fileID: 1702401973756734, guid: fad9f871fabfdb24facbea0fae3c3b36, type: 2}
   hitThreshold: 3
   thisType: 0
+  serialController: {fileID: 1872457340}
 --- !u!1 &282840810
 GameObject:
   m_ObjectHideFlags: 0
@@ -582,6 +584,7 @@ MonoBehaviour:
   thisOre: {fileID: 1884925981062640, guid: ecf26329096c7b8418f17d8e38c9a2fa, type: 2}
   hitThreshold: 3
   thisType: 3
+  serialController: {fileID: 0}
 --- !u!1001 &1440080352
 Prefab:
   m_ObjectHideFlags: 0
@@ -674,6 +677,7 @@ MonoBehaviour:
   thisOre: {fileID: 1711967765612290, guid: 6ddc56e9d57a64e43aedf0b2bfc79339, type: 2}
   hitThreshold: 3
   thisType: 4
+  serialController: {fileID: 0}
 --- !u!1 &1648110765
 GameObject:
   m_ObjectHideFlags: 0
@@ -720,6 +724,7 @@ MonoBehaviour:
   thisOre: {fileID: 1359452625201024, guid: f405932033840e84a95329b75b7147f6, type: 2}
   hitThreshold: 3
   thisType: 1
+  serialController: {fileID: 1872457340}
 --- !u!4 &1729257824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4667062850229176, guid: f8127bd4a4386f742b8103d23caeb8ae,
@@ -765,6 +770,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a03027548d784348a5d2b1fbe819cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serialController: {fileID: 1872457340}
 --- !u!1 &1872457338
 GameObject:
   m_ObjectHideFlags: 0

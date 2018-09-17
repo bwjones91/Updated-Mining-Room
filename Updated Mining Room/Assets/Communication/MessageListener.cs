@@ -18,8 +18,17 @@ using System.Collections;
 public class MessageListener : MonoBehaviour
 {
 
+    public SerialController serialController;
+
     public delegate void HitAction(Ore.OreType type);
     public static event HitAction OnHit;
+
+    void Start()
+    {
+        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+
+        Debug.Log("Press A or Z to execute some actions");
+    }
 
     // Invoked when a line of data is received from the serial device.
     void OnMessageArrived(string msg)
@@ -27,6 +36,21 @@ public class MessageListener : MonoBehaviour
 
         OnHit(MessageToOretype(msg));
         Debug.Log("Message arrived: " + msg);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            Debug.Log("Sending A");
+            serialController.SendSerialMessage("A");
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Debug.Log("Sending Z");
+            serialController.SendSerialMessage("Z");
+        }
     }
 
     // Invoked when a connect/disconnect event occurs. The parameter 'success'
@@ -58,5 +82,7 @@ public class MessageListener : MonoBehaviour
                 return Ore.OreType.None;
         }
     }
+
+
 
 }
