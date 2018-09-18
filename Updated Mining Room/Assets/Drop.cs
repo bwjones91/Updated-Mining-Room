@@ -46,6 +46,7 @@ public class Drop : MonoBehaviour {
                 stringMessage += hitAmount;
                 serialController.SendSerialMessage(stringMessage);
                 hitAmount = 0;
+                oreSwitcher.DeactivateOre();
             }
             stringMessage = EnumtoChar(type).ToString();
             stringMessage += hitAmount;

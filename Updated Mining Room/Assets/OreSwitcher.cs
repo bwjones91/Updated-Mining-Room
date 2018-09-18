@@ -24,6 +24,10 @@ public class OreSwitcher : MonoBehaviour {
     public SerialController serialController;
     public string stringMessage;
 
+    private float startTime;
+    private float timer;
+    private float timeToRestart = 3;
+
     int mithrilNeeded;
     int adamantiteNeeded;
     int goldNeeded;
@@ -34,10 +38,16 @@ public class OreSwitcher : MonoBehaviour {
         OresNeeded();
         Invoke("ActiveOre", 1f);
         serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
+        startTime = Time.time;
     }
 	
 	void Update () {
-        
+        timer += Time.deltaTime;
+        if(timer - startTime >= timeToRestart)
+        {
+            DeactivateOre();
+            startTime = Time.time;
+        }
     }
 
     public void OresNeeded()
@@ -70,7 +80,8 @@ public class OreSwitcher : MonoBehaviour {
     }
 
     public void ActiveOre()
-    {        
+    {
+        startTime = Time.time;
         oreActive = oresNeeded[Random.Range(0, oresNeeded.Count)].oreType;
         switch (oreActive)
         {
@@ -104,12 +115,13 @@ public class OreSwitcher : MonoBehaviour {
         stringMessage = "9";
         stringMessage += oreCheck;
         serialController.SendSerialMessage(stringMessage);
-        Invoke("DeactivateOre", 3f);
+        //Invoke("DeactivateOre", 3f);
         
     }
 
     public void DeactivateOre()
     {
+        startTime = Time.time;
             serialController.SendSerialMessage("99");
             oreActive = Ore.OreType.None;
             oreCheck = "5";
