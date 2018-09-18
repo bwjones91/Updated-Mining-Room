@@ -25,7 +25,7 @@ public class MessageListener : MonoBehaviour
 
     void Start()
     {
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
 
         Debug.Log("Press A or Z to execute some actions");
     }
@@ -35,7 +35,7 @@ public class MessageListener : MonoBehaviour
     {
 
         OnHit(MessageToOretype(msg));
-        Debug.Log("Message arrived: " + msg);
+        print(msg);
     }
 
     private void Update()

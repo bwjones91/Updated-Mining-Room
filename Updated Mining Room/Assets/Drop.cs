@@ -10,6 +10,7 @@ public class Drop : MonoBehaviour {
 
     [SerializeField] float hitThreshold = 3;
     [SerializeField] Ore.OreType thisType;
+    private string stringMessage;
 
     public SerialController serialController;
 
@@ -26,7 +27,7 @@ public class Drop : MonoBehaviour {
     void Start () {
         oreSwitcher = GameObject.Find("Ore Controller").GetComponent<OreSwitcher>();
         MessageListener.OnHit += OreHit;
-        serialController = GameObject.Find("SerialController").GetComponent<SerialController>();
+        serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
     }
 	
 	void Update () {
@@ -41,10 +42,13 @@ public class Drop : MonoBehaviour {
             if(hitAmount >= hitThreshold)
             {
                 Instantiate(thisOre);
+                stringMessage = EnumtoChar(type).ToString();
+                stringMessage += hitAmount;
+                serialController.SendSerialMessage(stringMessage);
                 hitAmount = 0;
             }
-            string stringMessage = hitAmount.ToString();
-            //stringMessage += hitAmount;
+            stringMessage = EnumtoChar(type).ToString();
+            stringMessage += hitAmount;
             serialController.SendSerialMessage(stringMessage);
         }
     }

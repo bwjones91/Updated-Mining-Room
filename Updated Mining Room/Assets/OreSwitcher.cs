@@ -21,6 +21,8 @@ public class OreSwitcher : MonoBehaviour {
     public GameObject activeOre;
     public string oreCheck;
     public Ore.OreType oreActive;
+    public SerialController serialController;
+    public string stringMessage;
 
     int mithrilNeeded;
     int adamantiteNeeded;
@@ -31,6 +33,7 @@ public class OreSwitcher : MonoBehaviour {
     void Start () {
         OresNeeded();
         Invoke("ActiveOre", 1f);
+        serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
     }
 	
 	void Update () {
@@ -39,11 +42,11 @@ public class OreSwitcher : MonoBehaviour {
 
     public void OresNeeded()
     {
-        mithrilNeeded = Random.Range(33, 35);
-        //adamantiteNeeded = Random.Range(33, 34);
-        //goldNeeded = Random.Range(3, 5);
-        //pyroniumNeeded = Random.Range(3, 5);
-        //silverNeeded = 20 - (mithrilNeeded + adamantiteNeeded + goldNeeded + pyroniumNeeded);
+        mithrilNeeded = Random.Range(3, 5);
+        adamantiteNeeded = Random.Range(3, 4);
+        goldNeeded = Random.Range(3, 5);
+        pyroniumNeeded = Random.Range(3, 5);
+        silverNeeded = 20 - (mithrilNeeded + adamantiteNeeded + goldNeeded + pyroniumNeeded);
         for (int i = 0; i < mithrilNeeded; i++)
         {
             oresNeeded.Add(mithrilOre.GetComponent<Ore>());
@@ -67,7 +70,7 @@ public class OreSwitcher : MonoBehaviour {
     }
 
     public void ActiveOre()
-    {
+    {        
         oreActive = oresNeeded[Random.Range(0, oresNeeded.Count)].oreType;
         switch (oreActive)
         {
@@ -98,23 +101,26 @@ public class OreSwitcher : MonoBehaviour {
                 break;
         }
 
-        Invoke("DeactivateOre", 2f);
+        stringMessage = "9";
+        stringMessage += oreCheck;
+        serialController.SendSerialMessage(stringMessage);
+        Invoke("DeactivateOre", 3f);
         
     }
 
     public void DeactivateOre()
     {
-        oreActive = Ore.OreType.None;
-        oreCheck = "5";
-        activeOre = null;
-        mithrilController.SetActive(false);
-        adamantiteController.SetActive(false);
-        goldController.SetActive(false);
-        pyroniumController.SetActive(false);
-        silverController.SetActive(false);
+            serialController.SendSerialMessage("99");
+            oreActive = Ore.OreType.None;
+            oreCheck = "5";
+            activeOre = null;
+            mithrilController.SetActive(false);
+            adamantiteController.SetActive(false);
+            goldController.SetActive(false);
+            pyroniumController.SetActive(false);
+            silverController.SetActive(false);
 
-        Invoke("ActiveOre", 1f);
+            Invoke("ActiveOre", 1f);
     }
-
-   
+       
 }
