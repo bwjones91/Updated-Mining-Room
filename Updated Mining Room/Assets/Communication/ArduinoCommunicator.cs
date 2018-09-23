@@ -8,7 +8,7 @@ public class ArduinoCommunicator : MonoBehaviour
 
     void Start()
     {
-        serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
+        serialController = GameObject.Find("Potentiometer Serial Controller").GetComponent<SerialController>();
 
     }
 
@@ -40,8 +40,8 @@ public class ArduinoCommunicator : MonoBehaviour
 
          string message = serialController.ReadSerialMessage();
 
-        //if (message == null)
-            //return;
+        if (message == null)
+            return;
 
         // Check if the message is plain data or a connect/disconnect event.
         /*if (ReferenceEquals(message, SerialController.SERIAL_DEVICE_CONNECTED))
@@ -51,7 +51,6 @@ public class ArduinoCommunicator : MonoBehaviour
         else
             Debug.Log("Message arrived: " + message);*/
         messageIN = message;
-        message = "5";
 
     }
 

@@ -21,6 +21,7 @@ public class OreSwitcher : MonoBehaviour {
     public GameObject activeOre;
     public string oreCheck;
     public Ore.OreType oreActive;
+    public Ore currentOre;
     public SerialController serialController;
     public string stringMessage;
 
@@ -88,26 +89,31 @@ public class OreSwitcher : MonoBehaviour {
             case Ore.OreType.Mithril:
                 oreCheck = "0";
                 activeOre = mithrilOre;
+                currentOre = mithrilOre.GetComponent<Ore>();
                 mithrilController.SetActive(true);
                 break;
             case Ore.OreType.Adamantite:
                 oreCheck = "1";
                 activeOre = adamantiteOre;
+                currentOre = adamantiteOre.GetComponent<Ore>();
                 adamantiteController.SetActive(true);
                 break;
             case Ore.OreType.Gold:
                 oreCheck = "2";
                 activeOre = goldOre;
+                currentOre = goldOre.GetComponent<Ore>();
                 goldController.SetActive(true);
                 break;
             case Ore.OreType.Pyronium:
                 oreCheck = "3";
                 activeOre = pyroniumOre;
+                currentOre = pyroniumOre.GetComponent<Ore>();
                 pyroniumController.SetActive(true);
                 break;
             case Ore.OreType.Silver:
                 oreCheck = "4";
                 activeOre = silverOre;
+                currentOre = silverOre.GetComponent<Ore>();
                 silverController.SetActive(true);
                 break;
         }
