@@ -15,7 +15,7 @@ public class TrollController : MonoBehaviour {
     public TrollRotate trollRotate;
 
 	void Start () {
-        Invoke("MoveTroll", 3f);
+        //Invoke("MoveTroll", 3f);
 	}
 
     void Update() {
