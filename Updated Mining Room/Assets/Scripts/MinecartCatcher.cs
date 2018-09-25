@@ -9,6 +9,7 @@ public class MinecartCatcher : MonoBehaviour {
     private string stringMessage;
     private OreSwitcher oreSwitcher;
     private Ore instance;
+    private int oreTypeCaught;
 
     public SerialController serialController;
     public bool hasBeenHit = false;
@@ -39,6 +40,8 @@ public class MinecartCatcher : MonoBehaviour {
             ThrowOre();
         }
     }
+
+
 
     public void ThrowOre()
     {

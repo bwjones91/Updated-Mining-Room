@@ -36,10 +36,10 @@ public class Drop : MonoBehaviour {
 
     void OreHit(Ore.OreType type)
     {
-        if(type == thisType && thisType == oreSwitcher.oreActive)
+        if(type == thisType/* && thisType == oreSwitcher.oreActive*/)
         {
             hitAmount++;
-            if(hitAmount >= hitThreshold)
+            if (hitAmount >= hitThreshold)
             {
                 Instantiate(thisOre);
                 stringMessage = EnumtoChar(type).ToString();
@@ -47,10 +47,15 @@ public class Drop : MonoBehaviour {
                 serialController.SendSerialMessage(stringMessage);
                 hitAmount = 0;
                 oreSwitcher.DeactivateOre();
+                print(stringMessage);
             }
-            stringMessage = EnumtoChar(type).ToString();
-            stringMessage += hitAmount;
-            serialController.SendSerialMessage(stringMessage);
+            else
+            {
+                stringMessage = EnumtoChar(type).ToString();
+                stringMessage += hitAmount;
+                serialController.SendSerialMessage(stringMessage);
+                print(stringMessage);
+            }
         }
     }
 

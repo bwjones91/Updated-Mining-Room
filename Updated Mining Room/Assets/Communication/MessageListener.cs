@@ -35,7 +35,7 @@ public class MessageListener : MonoBehaviour
     {
 
         OnHit(MessageToOretype(msg));
-        print(msg);
+        //print(msg);
     }
 
     private void Update()

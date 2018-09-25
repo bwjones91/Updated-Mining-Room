@@ -15,10 +15,13 @@ public class Ore : MonoBehaviour {
     }
 
     public OreType oreType;
+    public SerialController serialController;
+
+    private string stringMessage;
 
     void Start () {
-		
-	}
+        serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
+    }
 	
 	void Update () {
 		
@@ -26,6 +29,14 @@ public class Ore : MonoBehaviour {
 
     private void OnTriggerEnter(Collider collider)
     {
+        if(collider.gameObject.tag == "Player")
+        {
+            int oreNumber = (int)oreType;
+            stringMessage = "8";
+            stringMessage += oreNumber;
+            print(stringMessage);
+            serialController.SendSerialMessage(stringMessage);
+        }
         if (collider.gameObject.tag == "Ground")
         {
             Destroy(this.gameObject);

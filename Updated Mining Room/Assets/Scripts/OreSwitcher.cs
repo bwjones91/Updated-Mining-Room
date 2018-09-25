@@ -91,38 +91,38 @@ public class OreSwitcher : MonoBehaviour {
                 oreCheck = "0";
                 activeOre = mithrilOre;
                 currentOre = mithrilOre.GetComponent<Ore>();
-                mithrilController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+                //mithrilController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
                 break;
             case Ore.OreType.Adamantite:
                 oreCheck = "1";
                 activeOre = adamantiteOre;
                 currentOre = adamantiteOre.GetComponent<Ore>();
-                adamantiteController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+                //adamantiteController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
                 break;
             case Ore.OreType.Gold:
                 oreCheck = "2";
                 activeOre = goldOre;
                 currentOre = goldOre.GetComponent<Ore>();
-                goldController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+                //goldController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
                 break;
             case Ore.OreType.Pyronium:
                 oreCheck = "3";
                 activeOre = pyroniumOre;
                 currentOre = pyroniumOre.GetComponent<Ore>();
-                pyroniumController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+                //pyroniumController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
                 break;
             case Ore.OreType.Silver:
                 oreCheck = "4";
                 activeOre = silverOre;
                 currentOre = silverOre.GetComponent<Ore>();
-                silverController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+                //silverController.SetActive(true);     //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
                 break;
         }
 
         stringMessage = "9";
         stringMessage += oreCheck;
-        serialController.SendSerialMessage(stringMessage);
-        print(stringMessage);
+        //serialController.SendSerialMessage(stringMessage);
+        //print(stringMessage);
         //Invoke("DeactivateOre", 3f);
         
     }
@@ -130,14 +130,14 @@ public class OreSwitcher : MonoBehaviour {
     public void DeactivateOre()
     {
         startTime = Time.time;
-            serialController.SendSerialMessage("99");
+            //serialController.SendSerialMessage("99");
             oreActive = Ore.OreType.None;            
             activeOre = null;
-            mithrilController.SetActive(false);       //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+            /*mithrilController.SetActive(false);       //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
             adamantiteController.SetActive(false);    //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
             goldController.SetActive(false);          //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
             pyroniumController.SetActive(false);      //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
-            silverController.SetActive(false);        //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
+            silverController.SetActive(false);*/        //////// FOR VISUAL ONLY. DELETE ON FINAL BUILD.
             
             Invoke("ActiveOre", 3f);
     }
