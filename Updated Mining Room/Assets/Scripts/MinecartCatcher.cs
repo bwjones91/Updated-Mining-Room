@@ -22,12 +22,24 @@ public class MinecartCatcher : MonoBehaviour {
     public SerialController serialController;
     public bool hasBeenHit = false;
     public Ore oreThrown;
-    
+
+    private Sprite setSprite;
+    public Sprite mithrilSprite;
+    public Sprite adamantiteSprite;
+    public Sprite goldSprite;
+    public Sprite pyroniumSprite;
+    public Sprite silverSprite;
+    public Image[] minecartImages;
+    public GameObject canvas;
+
+    int imageNumber = 0;
+
 
     void Start () {
         serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
         oresRequired = GameObject.Find("Shopkeeper").GetComponent<OresRequired>();
         shopkeeper = GameObject.Find("Shopkeeper").GetComponent<Shopkeeper>();
+        minecartImages = canvas.GetComponentsInChildren<Image>();
     }
 	
 	void Update () {
@@ -43,29 +55,36 @@ public class MinecartCatcher : MonoBehaviour {
                 case Ore.OreType.Mithril:
                     oresCaught.Add(mithrilOre.GetComponent<Ore>());
                     oreCheck = 0;
+                    setSprite = mithrilSprite;
                     break;
                 case Ore.OreType.Adamantite:
                     oresCaught.Add(adamantiteOre.GetComponent<Ore>());
                     oreCheck = 1;
+                    setSprite = adamantiteSprite;
                     break;
                 case Ore.OreType.Gold:
                     oresCaught.Add(goldOre.GetComponent<Ore>());
                     oreCheck = 2;
+                    setSprite = goldSprite;
                     break;
                 case Ore.OreType.Pyronium:
                     oresCaught.Add(pyroniumOre.GetComponent<Ore>());
                     oreCheck = 3;
+                    setSprite = pyroniumSprite;
                     break;
                 case Ore.OreType.Silver:
                     oresCaught.Add(silverOre.GetComponent<Ore>());
                     oreCheck = 4;
+                    setSprite = silverSprite;
                     break;
             }
 
+            AssignImageSprite();
+
+            imageNumber++;
             stringMessage = "8";
             stringMessage += oreCheck;
             serialController.SendSerialMessage(stringMessage);
-            print(stringMessage);
 
             if (oresRequired.oresRequired.Count == oresCaught.Count)
             {
@@ -79,6 +98,8 @@ public class MinecartCatcher : MonoBehaviour {
                     print("Not equal");
                 }
                 oresCaught.Clear();
+                ClearImageSprite();
+
             }
         }
         else if(collider.gameObject.tag == "Enemy")
@@ -138,6 +159,26 @@ public class MinecartCatcher : MonoBehaviour {
                 oresCaught.Remove(oreThrown.GetComponent<Ore>());
 
             }
+        }
+    }
+
+
+    public void AssignImageSprite()
+    {
+        minecartImages[imageNumber].sprite = setSprite;
+        var activeColor = minecartImages[imageNumber].color;
+        activeColor.a = 1f;
+        minecartImages[imageNumber].color = activeColor;
+    }
+
+    public void ClearImageSprite()
+    {
+        for(int i = 0; i < imageNumber; i++)
+        {
+            minecartImages[i].sprite = null;
+            var activeColor = minecartImages[i].color;
+            activeColor.a = 0f;
+            minecartImages[i].color = activeColor;
         }
     }
 

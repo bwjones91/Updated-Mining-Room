@@ -18,7 +18,7 @@ public class OresRequired : MonoBehaviour {
     int goldRequired;
     int pyroniumRequired;
     int silverRequired;
-
+    int imageNumber = 0;
 
     public Sprite mithrilSprite;
     public Sprite adamantiteSprite;
@@ -26,62 +26,14 @@ public class OresRequired : MonoBehaviour {
     public Sprite pyroniumSprite;
     public Sprite silverSprite;
     public Image[] images;
-    public Transform[] childs;
     public GameObject canvas;
-
-    int value = 0;
 
     void Start () {
         images = canvas.GetComponentsInChildren<Image>();
-        /*images = new Image[childs.Length];
-
-        foreach(Transform trans in childs)
-        {
-            value++;
-            images.SetValue(trans.gameObject, value - 1);
-        }*/
     }
 	
 	void Update () {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            for(int i = 0; i < oresRequired.Count; i++)
-            {
-                switch (oresRequired[i].oreType)
-                {
-                    case Ore.OreType.Mithril:
-                        images[i].sprite = mithrilSprite;
-                        var activeColor = images[i].color;
-                        activeColor.a = 1f;
-                        images[i].color = activeColor;
-                        break;
-                    case Ore.OreType.Adamantite:
-                        images[i].sprite = adamantiteSprite;
-                        activeColor = images[i].color;
-                        activeColor.a = 1f;
-                        images[i].color = activeColor;
-                        break;
-                    case Ore.OreType.Gold:
-                        images[i].sprite = goldSprite;
-                        activeColor = images[i].color;
-                        activeColor.a = 1f;
-                        images[i].color = activeColor;
-                        break;
-                    case Ore.OreType.Pyronium:
-                        images[i].sprite = pyroniumSprite;
-                        activeColor = images[i].color;
-                        activeColor.a = 1f;
-                        images[i].color = activeColor;
-                        break;
-                    case Ore.OreType.Silver:
-                        images[i].sprite = silverSprite;
-                        activeColor = images[i].color;
-                        activeColor.a = 1f;
-                        images[i].color = activeColor;
-                        break;
-                }
-            }
-        }
+
     }
 
     public void RequiredOres(int wave)
@@ -110,6 +62,63 @@ public class OresRequired : MonoBehaviour {
         for (int i = 0; i < silverRequired; i++)
         {
             oresRequired.Add(silverOre.GetComponent<Ore>());
+        }
+        print(oresRequired.Count);
+    }
+
+    public void ClearRequiredOres()
+    {
+        oresRequired.Clear();
+    }
+
+    public void DisplayOresRequired()
+    {
+        for (int i = 0; i < oresRequired.Count; i++)
+        {
+            switch (oresRequired[i].oreType)
+            {
+                case Ore.OreType.Mithril:
+                    images[i].sprite = mithrilSprite;
+                    var activeColor = images[i].color;
+                    activeColor.a = 1f;
+                    images[i].color = activeColor;
+                    break;
+                case Ore.OreType.Adamantite:
+                    images[i].sprite = adamantiteSprite;
+                    activeColor = images[i].color;
+                    activeColor.a = 1f;
+                    images[i].color = activeColor;
+                    break;
+                case Ore.OreType.Gold:
+                    images[i].sprite = goldSprite;
+                    activeColor = images[i].color;
+                    activeColor.a = 1f;
+                    images[i].color = activeColor;
+                    break;
+                case Ore.OreType.Pyronium:
+                    images[i].sprite = pyroniumSprite;
+                    activeColor = images[i].color;
+                    activeColor.a = 1f;
+                    images[i].color = activeColor;
+                    break;
+                case Ore.OreType.Silver:
+                    images[i].sprite = silverSprite;
+                    activeColor = images[i].color;
+                    activeColor.a = 1f;
+                    images[i].color = activeColor;
+                    break;
+            }
+        }
+    }
+
+    public void ClearImageSprite()
+    {
+        for (int i = 0; i < imageNumber; i++)
+        {
+            images[i].sprite = null;
+            var activeColor = images[i].color;
+            activeColor.a = 0f;
+            images[i].color = activeColor;
         }
     }
 

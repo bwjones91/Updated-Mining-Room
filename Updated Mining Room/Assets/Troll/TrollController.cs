@@ -15,7 +15,7 @@ public class TrollController : MonoBehaviour {
     public TrollRotate trollRotate;
 
 	void Start () {
-        //Invoke("MoveTroll", 3f);
+
 	}
 
     void Update() {
@@ -25,6 +25,14 @@ public class TrollController : MonoBehaviour {
     public void MoveTroll()
     {
         trollMove.TrollPositionDecider();
+    }
+
+    private void OnTriggerEnter(Collider collider)
+    {
+        if(collider.gameObject.tag == "Ore")
+        {
+
+        }
     }
 
 }
