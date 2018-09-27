@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class WaveController : MonoBehaviour {
 
-	// Use this for initialization
+    public OresRequired oresNeeded;
+
 	void Start () {
-		
+        oresNeeded = GameObject.Find("Shopkeeper").GetComponent<OresRequired>();
+        oresNeeded.RequiredOres(1);
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		
 	}

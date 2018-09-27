@@ -46,7 +46,7 @@ public class Drop : MonoBehaviour {
                 stringMessage += hitAmount;
                 serialController.SendSerialMessage(stringMessage);
                 hitAmount = 0;
-                oreSwitcher.DeactivateOre();
+                //oreSwitcher.DeactivateOre();
                 print(stringMessage);
             }
             else

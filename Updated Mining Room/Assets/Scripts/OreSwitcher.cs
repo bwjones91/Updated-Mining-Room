@@ -36,22 +36,22 @@ public class OreSwitcher : MonoBehaviour {
     int silverNeeded;
 
     void Start () {
-        OresNeeded();
-        Invoke("ActiveOre", 1f);
+        //OresNeeded();
+        //Invoke("ActiveOre", 1f);
         serialController = GameObject.Find("Piezo Serial Controller").GetComponent<SerialController>();
         startTime = Time.time;
     }
 	
 	void Update () {
         timer += Time.deltaTime;
-        if(timer - startTime >= timeToRestart)
+        /*if(timer - startTime >= timeToRestart)
         {
             DeactivateOre();
             startTime = Time.time;
-        }
+        }*/
     }
 
-    public void OresNeeded()
+    /*public void OresNeeded()
     {
         mithrilNeeded = Random.Range(3, 5);
         adamantiteNeeded = Random.Range(3, 4);
@@ -125,7 +125,7 @@ public class OreSwitcher : MonoBehaviour {
         //print(stringMessage);
         //Invoke("DeactivateOre", 3f);
         
-    }
+    }*/
 
     public void DeactivateOre()
     {
